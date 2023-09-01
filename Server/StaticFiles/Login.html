@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="LoginStyle.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="LoginJavascript.js">
+    </script>
+
+</head>
+
+<body>
+    <div class="top-bar">
+        <img class="logo" src="Logo.png" alt="Logo" height="40" width="40">
+        <!-- Insert your Logo.png file here -->
+        <a href="register.html"><button class="button">Register</button></a>
+        <a href="login.html"><button class="button">Login</button></a>
+        <a href="readMe.html"><button class="button">Read Me</button></a>
+    </div>
+
+    <form onsubmit="return handleLogin()">
+
+    <div class="login-form">
+        <div class="login-title">Login</div>
+        <input id="email" type="text" placeholder="Email">
+        <div style="position: relative;">
+            <input type="password" id="password" placeholder="Password">
+            <i class="password-toggle-icon" id="passwordToggle" onclick="togglePasswordVisibility()">&#128065;</i>
+        </div>
+        <label class="checkbox-label">
+      <input type="checkbox" name="rememberMe" id="rememberMe"> Remember me
+    </label>
+        <button class="login-button" type="submit">Login</button>
+    </div>
+    </form>
+    <script>
+
+
+function handleLogin() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const rememberMe = document.getElementById('rememberMe').checked;
+
+  // Authenticate user - replace this with your actual authentication logic
+  const isAuthenticated = authenticateUser(email, password);
+
+  if (isAuthenticated) {
+      if (rememberMe) {
+          // Set the "remember me" cookie with a 10-day expiration time
+          setCookie(email, password, 10);
+      } else {
+          // Set the "remember me" cookie with a 30-minute expiration time
+          setCookie(email, password, 0.0208); // (1/24) * 0.5 = 0.0208
+      }
+      // Redirect to the home/dashboard page
+      window.location.href = 'feed.html';
+  } else {
+      alert('Invalid email or password. Please try again.');
+  }
+
+  return false; // Prevent form submission
+}
+
+function setCookie(email, value, daysToExpire) {
+  const expirationDate = new Date();
+  expirationDate.setTime(expirationDate.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+  const expires = 'expires=' + expirationDate.toUTCString();
+  document.cookie = email + '=' + value + ';' + expires + ';path=/';
+}
+
+function authenticateUser(email, password) {
+  //TODO:  // Replace this with the actual authentication logic.
+
+  if(email=="admin@gmail.com" && password=="admin")
+  {
+    return true;
+  }
+  return false;
+}
+
+    </script>
+</body>
+
+</html>

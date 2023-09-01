@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="RegisterStyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Lexend+Deca:wght@300;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+</head>
+
+<body>
+    <!-- Top bar with links to the register and login pages -->
+    <div class="top-bar">
+        <a href="register.html"><button class="button">Register</button></a><a href="login.html"><button
+                class="button">Login</button></a><a href="readMe.html"><button class="button">Read Me</button></a>
+    </div>
+
+    <div class="container">
+        <div class="title">Sign Up</div>
+        <form id="signupForm" onsubmit="registerUser(event)">
+            <div class="form-columns">
+                <div class="form-column">
+                    <div class="form-group">
+                        <div class="name-group">
+                            <div class="first-name">
+                                <label for="firstname">First Name</label>
+                                <input type="text" id="firstname" name="firstname" required placeholder="John">
+                            </div>
+                            <div class="last-name">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" id="lastname" name="lastname" required placeholder="Doe">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="johndoe@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" name="bio" placeholder="Tell us about yourself"></textarea>
+                    </div>
+
+                </div>
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="profile_picture_url">Profile Picture URL</label>
+                        <input type="text" id="profile_picture_url" name="profile_picture_url"
+                            placeholder="https://example.com/profile.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="countries" name="countries"> </select>
+                    </div>
+
+                    <div class="form-group tooltip">
+                        <label>Birthdate<span class="tooltip-icon"
+                                title="Select your birthdate from the dropdowns.">?</span></label>
+                        <div class="birthdate-group">
+                            <select id="birthDay" name="birthDay" required>
+                                <option value="" disabled selected>Day</option>
+                            </select>
+                            <select id="birthMonth" name="birthMonth" required>
+                                <option value="" disabled selected>Month</option>
+                            </select>
+                            <select id="birthYear" name="birthYear" required>
+                                <option value="" disabled selected>Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group tooltip">
+                        <label>Gender<span class="tooltip-icon"
+                                title="Select your gender from the options.">?</span></label>
+                        <div class="gender-group">
+                            <input type="radio" id="male" name="gender" value="male" required>
+                            <label for="male">Male</label>
+
+                            <input type="radio" id="female" name="gender" value="female" required>
+                            <label for="female">Female</label>
+
+                            <input type="radio" id="other" name="gender" value="other" required>
+                            <label for="other">Other</label>
+                        </div>
+                    </div>
+                    <div class="form-group checkbox-label">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I approve of the <a href="terms.html" target="_blank">Terms</a> and <a
+                                href="privacy.html" target="_blank">Privacy Policy</a></label>
+                    </div>
+
+                    <button type="submit">Sign Up</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2023 Your Karaoke Social Network. All rights reserved.
+    </div>
+    <script src="RegisterJavascript.js"></script>
+    <script>
+
+        //Listening/waitig for the document to be ready
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectDrop = document.querySelector('#countries');
+            // const selectDrop = document.getElementById('countries');
+
+            fetch('https://restcountries.com/v3.1/all').then(res => {
+                return res.json();
+            }).then(data => {  
+                data.sort((a, b) => a.name.common.localeCompare(b.name.common));              
+                let output = "";
+                data.forEach(country => {
+                    output += `
+            <option value="${country.name.common}">${country.name.common}  </option>`;
+                })
+
+                selectDrop.innerHTML = output;
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>
