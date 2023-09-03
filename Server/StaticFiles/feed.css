@@ -22,58 +22,6 @@ body, h1, p {
     padding: 10px 20px;
 }
 
-.logo {
-    margin-right: 10px;
-}
-
-.buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.button {
-    background-color: #fff;
-    color: #3498db;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif; 
-}
-
-/* Main content styling */
-.main-content {
-    text-align: left; /* Change text alignment to left */
-    padding: 40px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: 'Poppins', sans-serif;
-    display: flex; /* Use flexbox layout */
-    align-items: center; /* Vertically center align items */
-    justify-content: center; /* Horizontally center align items */
-    max-width: 1200px;
-}
-
-.earth-logo-container {
-    margin-right: 20px;
-    margin-left: 0; /* Add this line to remove the left margin */
-}
-
-.text-content {
-    text-align: left;
-    max-width: 600px; /* Adjust the width as needed */
-    order: 2; /* Change the order to make it appear second */
-}
-
-.earth-logo {
-    animation: rotate 10s linear infinite;
-    width: 300px;
-    height: 300px;
-    margin-right: 20px; /* Add spacing between logo and text */
-}
 
 h1 {
     font-size: 48px;
@@ -100,6 +48,13 @@ p {
     font-family: 'Lexend Deca', sans-serif;
 }
 
+.like-button,
+.cancel-like-button {
+    display: inline-block;
+    /* Add other styling properties if needed */
+    background-color: blue;
+    color: white; /* Optionally, change text color to white for better visibility */
+}
 .get-started-button {
     background-color: #3498db;
     color: #fff;
@@ -134,4 +89,55 @@ p {
     bottom: 0;
     left: 0;
     width: 100%;
+}
+/* Your existing CSS styles */
+
+/* Add these styles to the end of your existing CSS file */
+
+/* Post styling */
+.post {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Post content container */
+.post-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Post header */
+.post-header {
+    display: flex;
+    align-items: center;
+}
+
+.post-header h3 {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* Post caption */
+.post-caption {
+    margin-top: 5px;
+}
+
+/* Post footer */
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+/* Post comments and likes */
+.post-comment,
+.post-likes {
+    font-weight: bold;
 }

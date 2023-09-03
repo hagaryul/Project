@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Stories</title>
+</head>
+<body>
+    <h1>Success Stories</h1>
+
+    <h2>Add a New Success Story</h2>
+    <form action="submit_story.php" method="post">
+        <label for="user2_id">Select a User:</label>
+        <select name="user2_id" id="user2_id">
+            <!-- Populate this dropdown with users (except the logged-in user) from your database -->
+            <!-- You can use PHP to dynamically generate options -->
+            <?php
+                // Replace this with your database query to fetch users
+                $users = []; // Fetch users from the database
+                foreach ($users as $user) {
+                    echo "<option value='" . $user['user_id'] . "'>" . $user['username'] . "</option>";
+                }
+            ?>
+        </select>
+        <br><br>
+
+        <label for="story_text">Write your Success Story:</label>
+        <textarea name="story_text" id="story_text" rows="4" cols="50" required></textarea>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Display existing success stories from your database -->
+    <h2>Existing Success Stories</h2>
+    <?php
+        // Replace this with your database query to fetch existing success stories
+        $successStories = []; // Fetch success stories from the database
+        foreach ($successStories as $story) {
+            echo "<p><strong>User " . $story['user1_id'] . ":</strong> " . $story['story_text'] . "</p>";
+            echo "<p><em>Date: " . $story['story_date'] . "</em></p>";
+            echo "<hr>";
+        }
+    ?>
+
+</body>
+</html>
