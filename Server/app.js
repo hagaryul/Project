@@ -2,6 +2,7 @@
 const express = require('express'); 
 const usersRoutes = require("./routes/users-routes");
 const postsRoutes = require("./routes/posts-routes");
+const successstoriesRoutes = require("./routes/successstories-routes");
 
 //function that saves the server 
 const app = express();
@@ -37,7 +38,7 @@ app.use(`/api/users`, usersRoutes);
 // app.use(`/api/orders`, ordersRoutes);
 app.use(`/api/posts`, postsRoutes);
 
-
+app.use(`/api/successstories`, successstoriesRoutes);
 
 
 //TODO:
